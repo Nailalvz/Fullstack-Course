@@ -1,0 +1,6 @@
+@startuml SPA - Nueva nota
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server->browser: status code: 201 Content-Type: application/json {"message":"note created"}
+
+@enduml

@@ -1,0 +1,23 @@
+@startuml new_note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+server->browser: status code: 302 location: /exampleapp/notes
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server->browser: status code: 200 Content-Type: text/html
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server->browser: status code 200 Content-Type: text/css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server->browser: status code: 200 Content-Type: application/javascript
+note over browser
+    browser starts executing js-code
+    that requests JSON data from server 
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server->browser: status code 200 Content-Type: application/json [{ "content": "I am the king of the world.","date": "2023-09-12T06:36:02.266Z"}, ...]
+note over browser
+    browser executes the event handler
+    that renders notes to display
+end note
+
+@enduml
